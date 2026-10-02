@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: CollabEditor-Backend
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    username: postgres
+    password: 1234
+    url: jdbc:postgresql://localhost:5432/CollabEditor
+  jpa:
+    hibernate:
+      ddl-auto: update
