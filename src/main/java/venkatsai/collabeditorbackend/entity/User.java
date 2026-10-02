@@ -2,6 +2,8 @@ package venkatsai.collabeditorbackend.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import lombok.*;
+
 
 @Entity
 @Table(name = "users")
