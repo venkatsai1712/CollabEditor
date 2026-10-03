@@ -2,6 +2,9 @@ package venkatsai.collabeditorbackend.entity;
 
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
 import lombok.*;
 
 
@@ -14,7 +17,7 @@ import lombok.*;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @Column(nullable = false, unique = true)
@@ -28,6 +31,12 @@ public class User {
 
     @Column(nullable = false)
     private LocalDateTime updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<File> files = new ArrayList<>();
+
+    @OneToMany(mappedBy = "user")
+    private List<SessionUser> sessionUsers = new ArrayList<>();
 
     @PrePersist
     protected void onCreate() {
