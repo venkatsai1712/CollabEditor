@@ -6,37 +6,41 @@ import lombok.*;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "file_documents")
+@Table(name = "documents")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class FileDocument {
+public class File {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
     @NotBlank
-    @Column(name = "file_name", nullable = false)
+    @Column(name = "name", nullable = false)
     private String name;
 
     @NotBlank
-    @Column(name = "file_type", nullable = false)
+    @Column(name = "type", nullable = false)
     private String type;
 
     @NotNull
-    @Column(name = "file_size", nullable = false)
+    @Column(name = "size", nullable = false)
     private Long size;
 
     @NotBlank
-    @Column(name = "file_path", nullable = false)
+    @Column(name = "path", nullable = false)
     private String path;
 
     @NotNull
-    @Column(name = "file_created_at", nullable = false, updatable = false)
+    @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
     @NotNull
-    @Column(name = "file_modified_at", nullable = false)
+    @Column(name = "modified_at", nullable = false)
     private LocalDateTime modifiedAt;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
 }
